@@ -1,27 +1,26 @@
 package com.perficient.apptservice.web.model;
 
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 /**
  * Created by RA on 06-30-2022.
  */
 
 @Data
-@Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Document(collection = "appointments")
 public class ApptDto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    // Note: UUID is not accepted by MongoDB. Use String instead.
+    private String id;
 
     private String apptName;
 
@@ -29,6 +28,7 @@ public class ApptDto {
 
     private String description;
 
+    // Note: OffsetDateTime does not persist directly onto MongoDB. Converter is needed (see MongoConfig.java).
     private OffsetDateTime startTime;
 
     private OffsetDateTime endTime;

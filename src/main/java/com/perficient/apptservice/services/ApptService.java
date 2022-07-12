@@ -3,7 +3,6 @@ package com.perficient.apptservice.services;
 import com.perficient.apptservice.web.model.ApptDto;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by RA on 06-30-2022.
@@ -14,12 +13,16 @@ public interface ApptService {
     // Save operation
     ApptDto saveAppt(ApptDto Appt);
 
-    // Read Operation
-    List<ApptDto> fetchApptList();
+    // Read Operation (Single)
+    ApptDto getAppt(String id);
+
+    // Read Operation (Multiple)
+    List<ApptDto> getApptList();
 
     // Update Operation
-    ApptDto updateAppt(ApptDto Apt, UUID id);
+    ApptDto updateAppt(ApptDto Apt, String id);
 
     // Delete operation
-    void deleteApptById(UUID id);
+    void deleteApptById(String id);
+
 }

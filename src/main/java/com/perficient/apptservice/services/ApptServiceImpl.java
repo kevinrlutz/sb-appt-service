@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by RA on 06-30-2022.
@@ -24,22 +23,36 @@ public class ApptServiceImpl implements ApptService {
         return apptRepository.save(Appt);
     }
 
-    // Read Operation
+    // Read Operation (Single)
     @Override
-    public List<ApptDto> fetchApptList() {
+    public ApptDto getAppt(String id) {
+        return apptRepository.findById(id).orElseThrow(RuntimeException::new);
+    }
+
+    // Read Operation (Multiple)
+    @Override
+    public List<ApptDto> getApptList() {
         return apptRepository.findAll();
     }
 
     // Update Operation
     @Override
-    public ApptDto updateAppt(ApptDto Apt, UUID id) {
-        // TODO: Implement
-        return null;
+    public ApptDto updateAppt(ApptDto apptDto, String id) {
+        ApptDto appt = apptRepository.findById(id).orElseThrow(RuntimeException::new);
+
+        appt.setApptName(apptDto.getApptName());
+        appt.setApptType(apptDto.getApptType());
+        appt.setDescription(apptDto.getDescription());
+        appt.setStartTime(apptDto.getStartTime());
+        appt.setEndTime(apptDto.getEndTime());
+        appt.setMetadata(apptDto.getMetadata());
+
+        return apptRepository.save(appt);
     }
 
     // Delete operation
     @Override
-    public void deleteApptById(UUID id) {
+    public void deleteApptById(String id) {
         apptRepository.deleteById(id);
     }
 
