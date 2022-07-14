@@ -14,7 +14,7 @@ public interface ApptService {
     ApptDto saveAppt(ApptDto Appt);
 
     // Read Operation (Single)
-    ApptDto getAppt(String id);
+    ApptDto getApptById(String id);
 
     // Read Operation (Multiple)
     List<ApptDto> getApptList();

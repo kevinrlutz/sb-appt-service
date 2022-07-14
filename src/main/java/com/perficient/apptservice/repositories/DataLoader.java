@@ -10,7 +10,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.time.OffsetDateTime;
+import java.time.LocalTime;
 
 @Component
 @Slf4j
@@ -26,7 +26,7 @@ public class DataLoader implements ApplicationRunner {
     }
 
     public void run(ApplicationArguments args) {
-        apptRepository.save(new ApptDto("cd71df6c-20a6-48d0-bb96-2514a90619e1", "Doctor Consultation", ApptTypeEnum.INITIAL, "Provide treatment plan for symptoms.", OffsetDateTime.now() , OffsetDateTime.now(), "None."));
+        apptRepository.save(new ApptDto("xyz", "Doctor Consultation", ApptTypeEnum.INITIAL, "Provide treatment plan for symptoms.", LocalTime.now() , LocalTime.now(), "None."));
         logger.info("MongoDB pre-loaded successfully with sample data");
     }
 }

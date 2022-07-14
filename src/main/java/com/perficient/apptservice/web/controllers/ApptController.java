@@ -4,6 +4,7 @@ import com.perficient.apptservice.services.ApptService;
 import com.perficient.apptservice.web.model.ApptDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +22,14 @@ public class ApptController {
 
     // Save operation
     @PostMapping("/appointments")
+    @ResponseStatus(code = HttpStatus.CREATED)
     public ApptDto saveAppt(@RequestBody ApptDto apptDto) {
         return apptService.saveAppt(apptDto);
+    }
+
+    @GetMapping("/appointments/{id}")
+    public ApptDto getApptById(@PathVariable("id") String id) {
+        return apptService.getApptById(id);
     }
 
     // Read operation
@@ -39,9 +46,10 @@ public class ApptController {
 
     // Delete operation
     @DeleteMapping("/appointments/{id}")
+    @ResponseStatus(code = HttpStatus.ACCEPTED)
     public String deleteApptById(@PathVariable("id") String id) {
         apptService.deleteApptById(id);
-        return "Deleted Successfully!";
+        return id;
     }
 
 }

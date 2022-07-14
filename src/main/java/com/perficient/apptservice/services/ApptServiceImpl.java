@@ -25,7 +25,7 @@ public class ApptServiceImpl implements ApptService {
 
     // Read Operation (Single)
     @Override
-    public ApptDto getAppt(String id) {
+    public ApptDto getApptById(String id) {
         return apptRepository.findById(id).orElseThrow(RuntimeException::new);
     }
 

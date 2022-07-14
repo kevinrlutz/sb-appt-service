@@ -5,5 +5,5 @@ package com.perficient.apptservice.web.model;
  */
 
 public enum ApptTypeEnum {
-    INITIAL, FOLLOW_UP, LAB, PHYSICAL, SURGERY
+    INITIAL, FOLLOW_UP, LAB, PHYSICAL, SURGERY, SESSION
 }
