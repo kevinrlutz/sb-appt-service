@@ -1,37 +1,40 @@
 package com.perficient.apptservice.repositories;
 
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
-
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
-import java.util.List;
+import org.springframework.core.env.Environment;
+import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
 
 @Configuration
-public class MongoConfig {
+public class MongoConfig extends AbstractMongoClientConfiguration {
+
+    @Autowired
+    private Environment env;
 
     @Bean
-    public MongoCustomConversions mongoCustomConversions() {
-        return new MongoCustomConversions(List.of(
-                new OffsetDateTimeReadConverter(),
-                new OffsetDateTimeWriteConverter()
-        ));
+    public MongoClient mongoClient() {
+        ConnectionString connectionString = new ConnectionString(env.getProperty("spring.data.mongodb.uri"));
+        MongoClientSettings settings = MongoClientSettings.builder()
+                .applyConnectionString(connectionString)
+                .build();
+        return MongoClients.create(settings);
     }
 
-    static class OffsetDateTimeWriteConverter implements Converter<OffsetDateTime, String> {
-        @Override
-        public String convert(OffsetDateTime source) {
-            return source.toInstant().atZone(ZoneOffset.UTC).toString();
-        }
+    @Bean
+    public MongoTemplate mongoTemplate() {
+        return new MongoTemplate(new SimpleMongoClientDatabaseFactory(mongoClient(), "appointments"));
     }
 
-    static class OffsetDateTimeReadConverter implements Converter<String, OffsetDateTime> {
-        @Override
-        public OffsetDateTime convert(String source) {
-            return OffsetDateTime.parse(source);
-        }
+    @Override
+    protected String getDatabaseName() {
+        return "appointments";
     }
 
 }
