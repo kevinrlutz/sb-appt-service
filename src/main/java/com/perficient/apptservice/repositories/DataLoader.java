@@ -11,6 +11,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Component
@@ -27,7 +28,7 @@ public class DataLoader implements ApplicationRunner {
     }
 
     public void run(ApplicationArguments args) {
-        apptRepository.save(new ApptDto("xyz", "Doctor Consultation", ApptTypeEnum.OPTOMETRIST, "Provide treatment plan for symptoms.", LocalTime.now() , LocalTime.now(), "None."));
+        apptRepository.save(new ApptDto("xyz", "Doctor Consultation", ApptTypeEnum.OPTOMETRIST, "Provide treatment plan for symptoms.", LocalDateTime.now(), LocalDateTime.now(), "None."));
         logger.info("MongoDB pre-loaded successfully with sample data");
     }
 }

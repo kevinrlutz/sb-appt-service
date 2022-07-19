@@ -4,7 +4,7 @@ import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 /**
  * Created by RA on 06-30-2022.
@@ -27,9 +27,9 @@ public class ApptDto {
 
     private String description;
 
-    private LocalTime startTime;
+    private LocalDateTime startTime;
 
-    private LocalTime endTime;
+    private LocalDateTime endTime;
 
     // Choose appropriate data type (map?)
     private String metadata;
