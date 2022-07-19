@@ -1,6 +1,7 @@
 package com.perficient.apptservice.repositories;
 
 import com.perficient.apptservice.web.model.ApptDto;
+
 import com.perficient.apptservice.web.model.ApptTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -26,7 +27,7 @@ public class DataLoader implements ApplicationRunner {
     }
 
     public void run(ApplicationArguments args) {
-        apptRepository.save(new ApptDto("xyz", "Doctor Consultation", ApptTypeEnum.INITIAL, "Provide treatment plan for symptoms.", LocalTime.now() , LocalTime.now(), "None."));
+        apptRepository.save(new ApptDto("xyz", "Doctor Consultation", ApptTypeEnum.OPTOMETRIST, "Provide treatment plan for symptoms.", LocalTime.now() , LocalTime.now(), "None."));
         logger.info("MongoDB pre-loaded successfully with sample data");
     }
 }
