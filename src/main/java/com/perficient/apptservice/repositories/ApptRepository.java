@@ -15,9 +15,7 @@ import java.util.List;
 @Repository
 public interface ApptRepository extends MongoRepository<ApptDto, String> {
 
-    // TODO: Add service methods for findApptByName(), findAll(), and count()
-    @Query("{apptName: '?0'}")
-    ApptDto findApptByName(String apptName);
+    List<ApptDto> findByApptNameIgnoreCase(String name);
 
     @Query(value="{apptType: '?0'}", fields="{'id': 1, 'apptName' : 1}")
     List<ApptDto> findAll(ApptTypeEnum apptTypeEnum);
