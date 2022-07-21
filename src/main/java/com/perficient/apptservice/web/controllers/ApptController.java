@@ -24,6 +24,7 @@ public class ApptController {
     @PostMapping("/appointments")
     @ResponseStatus(code = HttpStatus.CREATED)
     public ApptDto saveAppt(@RequestBody ApptDto apptDto) {
+        System.out.println("In ApptController");
         return apptService.saveAppt(apptDto);
     }
 
@@ -36,6 +37,13 @@ public class ApptController {
     @GetMapping("/appointments")
     public List<ApptDto> getApptList() {
         return apptService.getApptList();
+    }
+
+    // Search operation
+    @GetMapping("/appointments/search/{name}")
+    public List<ApptDto> getAllApptsByName(@PathVariable("name") String name) {
+        System.out.println("In getallappts controller method in appt service");
+        return apptService.getAllApptsByName(name);
     }
 
     // Update operation

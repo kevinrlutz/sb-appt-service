@@ -46,6 +46,7 @@ public class ApptServiceImpl implements ApptService {
         appt.setStartTime(apptDto.getStartTime());
         appt.setEndTime(apptDto.getEndTime());
         appt.setMetadata(apptDto.getMetadata());
+        appt.setUserId(apptDto.getUserId());
 
         return apptRepository.save(appt);
     }
@@ -54,6 +55,12 @@ public class ApptServiceImpl implements ApptService {
     @Override
     public void deleteApptById(String id) {
         apptRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ApptDto> getAllApptsByName(String name) {
+        List<ApptDto> appts = apptRepository.findByApptNameIgnoreCase(name);
+        return appts;
     }
 
 
