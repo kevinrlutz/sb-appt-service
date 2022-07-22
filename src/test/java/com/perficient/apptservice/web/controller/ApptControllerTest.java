@@ -5,6 +5,7 @@ import com.perficient.apptservice.services.ApptService;
 import com.perficient.apptservice.web.controllers.ApptController;
 import com.perficient.apptservice.web.model.ApptDto;
 import com.perficient.apptservice.web.model.ApptTypeEnum;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -12,6 +13,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import java.time.LocalDateTime;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
@@ -29,7 +33,7 @@ public class ApptControllerTest {
     void getApptById() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/appointments/{id}","xyz")
+                .get("/appointments/{id}",new ObjectId())
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -73,13 +77,14 @@ public class ApptControllerTest {
 
     ApptDto getValidApptDto() {
         return ApptDto.builder()
-                .id("test-record")
-                .apptName("Morning Yoga")
-                .apptType(ApptTypeEnum.SESSION)
-                .description("Yoga classes taught by instructor.")
-                //.startTime(LocalTime.now())
-                //.endTime(LocalTime.now())
+                .id(new ObjectId().toString())
+                .apptName("Test Appt")
+                .apptType(ApptTypeEnum.PRIMARY_CARE)
+                .description("Test description.")
+                //.startTime(LocalDateTime.now())
+                //.endTime(LocalDateTime.now())
                 .metadata("N/A")
+                .userId(new ObjectId().toString())
                 .build();
     }
 

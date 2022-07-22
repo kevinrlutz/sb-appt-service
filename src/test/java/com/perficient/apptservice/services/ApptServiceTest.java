@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataM
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -64,12 +65,12 @@ public class ApptServiceTest {
         System.out.println("Saved Appt: " + savedAppt);
 
         ApptDto updateDto = ApptDto.builder()
-                .apptName("Evening Yoga")
-                .apptType(ApptTypeEnum.SESSION)
-                .description("Self-directed group session.")
-                .startTime(LocalTime.now())
-                .endTime(LocalTime.now())
-                .metadata("Fees: $200")
+                .apptName("Update Appt")
+                .apptType(ApptTypeEnum.DENTIST)
+                .description("Updated description.")
+                .startTime(LocalDateTime.now())
+                .endTime(LocalDateTime.now())
+                .metadata("N/A")
                 .build();
 
         ApptDto updatedAppt = apptService.updateAppt(updateDto, savedAppt.getId());
@@ -91,12 +92,13 @@ public class ApptServiceTest {
     ApptDto getValidApptDto() {
         return ApptDto.builder()
                 .id(new ObjectId().toString())
-                .apptName("Morning Yoga")
-                .apptType(ApptTypeEnum.SESSION)
-                .description("Yoga classes taught by instructor.")
-                .startTime(LocalTime.now())
-                .endTime(LocalTime.now())
+                .apptName("Test Appt")
+                .apptType(ApptTypeEnum.PRIMARY_CARE)
+                .description("Test description.")
+                .startTime(LocalDateTime.now())
+                .endTime(LocalDateTime.now())
                 .metadata("N/A")
+                .userId(new ObjectId().toString())
                 .build();
     }
 

@@ -17,9 +17,6 @@ public interface ApptRepository extends MongoRepository<ApptDto, String> {
 
     List<ApptDto> findByApptNameIgnoreCase(String name);
 
-    @Query(value="{apptType: '?0'}", fields="{'id': 1, 'apptName' : 1}")
-    List<ApptDto> findAll(ApptTypeEnum apptTypeEnum);
-
     long count();
 
 }
