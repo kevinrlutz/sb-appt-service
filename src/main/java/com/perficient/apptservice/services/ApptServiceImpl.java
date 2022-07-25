@@ -59,8 +59,12 @@ public class ApptServiceImpl implements ApptService {
 
     @Override
     public List<ApptDto> getAllApptsByName(String name) {
-        List<ApptDto> appts = apptRepository.findByApptNameIgnoreCase(name);
-        return appts;
+        return apptRepository.findByApptNameIgnoreCase(name);
+    }
+
+    @Override
+    public List<ApptDto> getApptListByUserId(String userId) {
+        return apptRepository.findByUserId(userId);
     }
 
 

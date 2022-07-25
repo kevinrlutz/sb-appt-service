@@ -26,4 +26,6 @@ public interface ApptService {
     void deleteApptById(String id);
 
     List<ApptDto> getAllApptsByName(String name);
+
+    List<ApptDto> getApptListByUserId(String userId);
 }
