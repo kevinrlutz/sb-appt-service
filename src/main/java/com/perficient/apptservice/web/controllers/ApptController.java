@@ -28,23 +28,27 @@ public class ApptController {
     }
 
     @GetMapping("/appointments/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public ApptDto getApptById(@PathVariable("id") String id) {
         return apptService.getApptById(id);
     }
 
     // Read operation
     @GetMapping("/appointments")
+    @ResponseStatus(HttpStatus.OK)
     public List<ApptDto> getApptList() {
         return apptService.getApptList();
     }
 
     @GetMapping("/{userId}/appointments")
+    @ResponseStatus(HttpStatus.OK)
     public List<ApptDto> getApptListByUserId(@PathVariable("userId") String userId) {
         return apptService.getApptListByUserId(userId);
     }
 
     // Search operation
     @GetMapping("/appointments/search/{name}")
+    @ResponseStatus(HttpStatus.OK)
     public List<ApptDto> getAllApptsByName(@PathVariable("name") String name) {
         System.out.println("In getallappts controller method in appt service");
         return apptService.getAllApptsByName(name);
@@ -52,13 +56,14 @@ public class ApptController {
 
     // Update operation
     @PutMapping("/appointments/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public ApptDto updateAppt(@RequestBody ApptDto apptDto, @PathVariable("id") String id) {
         return apptService.updateAppt(apptDto, id);
     }
 
     // Delete operation
     @DeleteMapping("/appointments/{id}")
-    @ResponseStatus(code = HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public String deleteApptById(@PathVariable("id") String id) {
         apptService.deleteApptById(id);
         return id;
