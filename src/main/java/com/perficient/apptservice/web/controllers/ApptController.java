@@ -53,11 +53,11 @@ public class ApptController {
     @GetMapping("/search/{name}")
     @ResponseStatus(code = HttpStatus.OK)
     public List<ApptDto> getAllApptsByName(@PathVariable("name") String name) {
-        System.out.println("In getallappts controller method in appt service");
         return apptService.getAllApptsByName(name);
     }
 
     // Update operation
+
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public ApptDto updateAppt(@RequestBody ApptDto apptDto, @PathVariable("id") String id) {

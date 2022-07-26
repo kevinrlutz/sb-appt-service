@@ -25,7 +25,7 @@ public class DataLoader implements ApplicationRunner {
     }
 
     public void run(ApplicationArguments args) {
-        apptRepository.save(new ApptDto("xyz", "Doctor Consultation", ApptTypeEnum.OPTOMETRIST, "Provide treatment plan for symptoms.", LocalDateTime.now() , LocalDateTime.now(), "None.", "abc"));
-        logger.info("MongoDB pre-loaded successfully with sample data");
+//        apptRepository.save(new ApptDto("xyz", "Doctor Consultation", ApptTypeEnum.OPTOMETRIST, "Provide treatment plan for symptoms.", LocalDateTime.now() , LocalDateTime.now(), "None.", "abc"));
+//        logger.info("MongoDB pre-loaded successfully with sample data");
     }
 }
