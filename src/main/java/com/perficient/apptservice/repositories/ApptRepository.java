@@ -15,6 +15,8 @@ public interface ApptRepository extends MongoRepository<ApptDto, String> {
 
     List<ApptDto> findByApptNameIgnoreCase(String name);
 
+    List<ApptDto> findByUserId(String userId);
+
     long count();
 
 }

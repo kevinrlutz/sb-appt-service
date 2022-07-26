@@ -38,6 +38,11 @@ public class ApptController {
         return apptService.getApptList();
     }
 
+    @GetMapping("/{userId}/appointments")
+    public List<ApptDto> getApptListByUserId(@PathVariable("userId") String userId) {
+        return apptService.getApptListByUserId(userId);
+    }
+
     // Search operation
     @GetMapping("/appointments/search/{name}")
     public List<ApptDto> getAllApptsByName(@PathVariable("name") String name) {
