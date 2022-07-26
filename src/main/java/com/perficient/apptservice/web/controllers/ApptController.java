@@ -24,7 +24,6 @@ public class ApptController {
     @PostMapping("/appointments")
     @ResponseStatus(code = HttpStatus.CREATED)
     public ApptDto saveAppt(@RequestBody ApptDto apptDto) {
-        System.out.println("In ApptController");
         return apptService.saveAppt(apptDto);
     }
 

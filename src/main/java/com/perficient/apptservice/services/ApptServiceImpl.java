@@ -57,6 +57,7 @@ public class ApptServiceImpl implements ApptService {
         apptRepository.deleteById(id);
     }
 
+    // Search operation
     @Override
     public List<ApptDto> getAllApptsByName(String name) {
         List<ApptDto> appts = apptRepository.findByApptNameIgnoreCase(name);

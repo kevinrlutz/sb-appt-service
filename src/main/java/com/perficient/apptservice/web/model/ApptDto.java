@@ -18,7 +18,6 @@ import java.time.LocalDateTime;
 public class ApptDto {
 
     @Id
-    // Note: UUID is not accepted by MongoDB. Use String instead.
     private String id;
 
     private String apptName;
@@ -31,7 +30,6 @@ public class ApptDto {
 
     private LocalDateTime endTime;
 
-    // Choose appropriate data type (map?)
     private String metadata;
 
     private String userId;

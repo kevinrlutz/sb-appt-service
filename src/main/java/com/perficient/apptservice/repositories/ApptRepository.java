@@ -1,9 +1,7 @@
 package com.perficient.apptservice.repositories;
 
 import com.perficient.apptservice.web.model.ApptDto;
-import com.perficient.apptservice.web.model.ApptTypeEnum;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
