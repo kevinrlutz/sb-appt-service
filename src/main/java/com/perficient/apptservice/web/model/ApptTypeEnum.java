@@ -5,5 +5,5 @@ package com.perficient.apptservice.web.model;
  */
 
 public enum ApptTypeEnum {
-    INITIAL, PRIMARY_CARE, OPTOMETRIST, DENTIST, DERMATOLOGIST
+    PRIMARY_CARE, OPTOMETRIST, DENTIST, DERMATOLOGIST, OTHER
 }

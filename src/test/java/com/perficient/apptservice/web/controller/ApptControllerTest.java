@@ -14,8 +14,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
@@ -46,6 +48,24 @@ public class ApptControllerTest {
                 .get("/appointments")
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void getApptListByUserId() throws Exception {
+        given(apptService.getApptListByUserId(any())).willReturn(new ArrayList<>());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/appointments")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void getAllApptsByName() throws Exception {
+        given(apptService.getAllApptsByName(any())).willReturn(new ArrayList<>());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/appointments")
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 

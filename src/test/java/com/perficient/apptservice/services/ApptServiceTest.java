@@ -13,7 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -39,10 +39,27 @@ public class ApptServiceTest {
         String testId = savedAppt.getId();
 
         ApptDto returnedApptDto = apptService.getApptById(testId);
-        System.out.println("Returned Appt: " + returnedApptDto);
+        // System.out.println("Returned Appt: " + returnedApptDto);
 
         assertNotNull(returnedApptDto);
 
+    }
+
+    @Test
+    void getApptListByUserId() throws Exception {
+        ApptDto apptDto = getValidApptDto();
+        apptService.saveAppt(apptDto);
+        List<ApptDto> returnedApptDtoList = apptService.getApptListByUserId(apptDto.getUserId());
+
+        assertNotNull(returnedApptDtoList);
+    }
+
+    @Test
+    void getAllApptsByName() throws Exception {
+        apptService.saveAppt(getValidApptDto());
+        List<ApptDto> returnedApptDtoList = apptService.getAllApptsByName("Test Appt");
+
+        assertNotNull(returnedApptDtoList);
     }
 
     @Test

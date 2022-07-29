@@ -57,7 +57,6 @@ public class ApptController {
     }
 
     // Update operation
-
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public ApptDto updateAppt(@RequestBody ApptDto apptDto, @PathVariable("id") String id) {
